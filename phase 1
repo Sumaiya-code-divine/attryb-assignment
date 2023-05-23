@@ -1,0 +1,45 @@
+TABLE SCHEMA(For end-user)
+TABLE NAME: OEM_SPECS
+
+model_name| model_year| mileage| price| color  //here model_name primary key, mileage will be secondary key
+
+mileage | max_speed | power      //mileage will be primary key, max_speed and power will depend on mileage
+
+manufacturer| mileage  //manufacturer(primary key) defines mileage(secondary key)
+
+Table Schema(for dealers):
+
+TABLE NAME:  Marketplace_Inventory
+
+km_odometer| major_scratches| original_paint| accidents_reported| number_of_previous_buyers| registration_place //here we add  model_name as foreign key and km_odometer as primary_key
+
+km_odometer| model_name
+
+TABLE CREATION:
+
+create table oem_specs(model_name varchar(255) primary_key, model_year Date, mileage int, price Decimal(10,2), color varchar(255), foreign_key(mileage) references mile_table);
+
+create table mile_table(mileage int primary_key, max_speed int, power int)
+
+create table manufac_mile(manufacturer varchar(255), mileage(int), foreign_key(mileage) references mile_table)
+
+create table marketplace_inventory(km_odometer int, major_scratches varchar(255), original_paint varchar(255), accidents_reported int, number_of_previous_buyers int, registration_place varchar(255));
+
+INSERTION:
+
+insert into oem_specs(varchar,date,int,decimal,varchar) values ("HONDA",2016,70,75000.00,"yellow");
+insert into mile_table(int,int,int) values (70,75,50);
+insert into manufac_mile(varchar,int,int) values ("idea",70);
+insert into marketplace_inventory(25, null, "orange",2,1,"Bangalore");
+
+1. Create API to query the number of OEM models available
+
+select o.model_name,count(*) as count 
+from oem_specs o, mile_table m where o.mileage==m.mileage GROUP BY model_name;
+
+2. Create an API to search for Honda City 2015 OEM specs
+
+select * from oem_specs where model_name = "Honda City" and model_year = 2015;
+
+
+
