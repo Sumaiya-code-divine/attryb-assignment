@@ -25,12 +25,12 @@ create table manufac_mile(manufacturer varchar(255), mileage(int), foreign_key(m
 
 create table marketplace_inventory(km_odometer int, major_scratches varchar(255), original_paint varchar(255), accidents_reported int, number_of_previous_buyers int, registration_place varchar(255));
 
-INSERTION:
+INSERTION OF VALUES:
 
 insert into oem_specs(varchar,date,int,decimal,varchar) values ("HONDA",2016,70,75000.00,"yellow");
 insert into mile_table(int,int,int) values (70,75,50);
 insert into manufac_mile(varchar,int,int) values ("idea",70);
-insert into marketplace_inventory(25, null, "orange",2,1,"Bangalore");
+insert into marketplace_inventory(int,varchar,varchar,int,int,varchar) values(25, null, "orange",2,1,"Bangalore");
 
 1. Create API to query the number of OEM models available
 
